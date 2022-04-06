@@ -5,6 +5,7 @@ import AccountCreation from "./Components/Auth/accountCreation";
 import UserLogin from "./Components/Auth/userLogin";
 import CountrySelect from "./Components/MainComponents/authorSearch";
 import BasicPagination from "./Components/pagination";
+import PopUpQuestionModal from "./Components/popUpQuestionModal";
 function Home() {
   return <h1>Home</h1>;
 }
@@ -42,6 +43,7 @@ function App() {
       <Route path="/team" element={<Team />} />
       <Route path="/pagination" element={<BasicPagination />} />
       <Route path="/tester" element={<CountrySelect />} />
+      <Route path = "/viewPost" element = {<PopUpQuestionModal/>} />
     </Routes>
   );
 }

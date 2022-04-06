@@ -1,3 +1,5 @@
+import renderHTML from "react-render-html";
+import { useSelector, useDispatch } from "react-redux";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -11,7 +13,6 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
-import { useDispatch, useSelector } from "react-redux";
 import { openPopModal } from "../Redux/actions";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -19,17 +20,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function FullScreenDialog() {
-  function Hello(props) {
-    return <>{props.toWhat}</>;
-  }
-
-  function HelloWorld(x) {
-    return <Hello toWhat={x} />;
-  }
-
   const dispatch = useDispatch();
   const records = useSelector((state) => state);
+
   const [open, setOpen] = React.useState(records.ArticleReducers.openPopModal);
+  const [currentHtml, setCurrentHtml] = React.useState("");
+  React.useEffect(() => {
+    setCurrentHtml(records.ArticleReducers.getCurrentPostHtml);
+  }, [records.ArticleReducers.getCurrentPostHtml]);
 
   const handleClickOpen = () => {
     setOpen(records.ArticleReducers.openPopModal);
@@ -37,12 +35,11 @@ export default function FullScreenDialog() {
 
   const handleClose = () => {
     dispatch(openPopModal(false));
-    setOpen(false);
+    setOpen(records.ArticleReducers.openPopModal);
   };
 
   return (
     <div>
-      {console.log(records)}
       <Button variant="outlined" onClick={handleClickOpen}>
         Open full-screen dialog
       </Button>
@@ -62,7 +59,6 @@ export default function FullScreenDialog() {
             >
               <CloseIcon />
             </IconButton>
-
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Sound
             </Typography>
@@ -71,19 +67,7 @@ export default function FullScreenDialog() {
             </Button>
           </Toolbar>
         </AppBar>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText
-              primary="Default notification ringtone"
-              secondary="Tethys"
-            />
-          </ListItem>
-        </List>
-        <HelloWorld toWhat={records.ArticleReducers.getCurrentPostHtml} />
+        {renderHTML(String(currentHtml))};
       </Dialog>
     </div>
   );

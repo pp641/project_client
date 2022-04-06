@@ -14,7 +14,10 @@ import {
 } from "../Redux/actions";
 import { sendLikeStatus } from "../Redux/AuthRedux/actions";
 import AuthorSearch from "./MainComponents/authorSearch";
+import { useNavigate } from "react-router-dom";
+import FullScreenDialog from "./popUpQuestionModal";
 const BasicPagination = () => {
+  const navigate = useNavigate();
   const prevCountRef = useRef();
   const dispatch = useDispatch();
   const records = useSelector((state) => state);
@@ -84,7 +87,7 @@ const BasicPagination = () => {
 
   return (
     <React.Fragment>
-      <PopModal />
+      <FullScreenDialog />
       <AuthorSearch />
       {console.log("Thiss", prevCountRef.current, currentRecord)};
       <button
