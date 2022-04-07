@@ -89,7 +89,6 @@ const BasicPagination = () => {
     <React.Fragment>
       <FullScreenDialog />
       <AuthorSearch />
-      {console.log("Thiss", prevCountRef.current, currentRecord)};
       <button
         onClick={() => {
           dispatch(

@@ -1,49 +1,74 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createAccount } from "../../Redux/AuthRedux/actions";
+import { MDBBtn } from "mdb-react-ui-kit";
+import { MDBInput } from "mdb-react-ui-kit";
+import { Button, TextField } from "@mui/material";
+import {
+  createAccount,
+  setCurrentStatus,
+  setSnackBar,
+} from "../../Redux/AuthRedux/actions";
+import CustomizedSnackbars from "../../common/snackBarComponent";
 
 const AccountCreation = () => {
   const dispatch = useDispatch();
-  //   const userState = useSelector((state) => state);
+  const records = useSelector((state) => state);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   return (
     <React.Fragment>
-      <div>AccountCreation</div>
-      <input
-        type="text"
-        value={name}
-        placeholder="Name"
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        value={email}
-        placeholder="Email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <input
-        type="password"
-        value={password}
-        placeholder="Password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
-          dispatch(createAccount({ name, email, password }));
+      <div
+        style={{
+          width: "23rem",
+          justifyContent: "center",
+          margin: "20px",
         }}
       >
-        {" "}
-        Register{" "}
-      </button>
+        <TextField
+          id="outlined-basic"
+          type="text"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          placeholder="Enter your Name"
+          label="Name"
+          variant="outlined"
+        />
+        <TextField
+          id="outlined-basic"
+          type="text"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          placeholder="Enter your Email"
+          label="Email"
+          variant="outlined"
+        />
+        <TextField
+          id="outlined-basic"
+          type="text"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          placeholder="Enter your Password"
+          label="Password"
+          variant="outlined"
+        />
+        <Button
+          onClick={() => {
+            dispatch(createAccount({ name, email, password }));
+          }}
+          variant="contained"
+        >
+          Register
+        </Button>
+      </div>
+      <CustomizedSnackbars />;
     </React.Fragment>
   );
 };

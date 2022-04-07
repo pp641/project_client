@@ -1,4 +1,5 @@
 import { Pagination } from "@mui/material";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import AfterLogin from "./Components/AfterLogin";
 import AccountCreation from "./Components/Auth/accountCreation";
@@ -43,7 +44,7 @@ function App() {
       <Route path="/team" element={<Team />} />
       <Route path="/pagination" element={<BasicPagination />} />
       <Route path="/tester" element={<CountrySelect />} />
-      <Route path = "/viewPost" element = {<PopUpQuestionModal/>} />
+      <Route path="/viewPost" element={<PopUpQuestionModal />} />
     </Routes>
   );
 }

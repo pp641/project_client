@@ -4,10 +4,25 @@ const AllReducers = (
     accountLoginDetails: {},
     hasUserMarked: {},
     currentUser: {},
+    isSnackBarSuccess: 0,
+    currentStatusCode: 0,
   },
   action
 ) => {
   switch (action.type) {
+    case "SET_SNACK_BAR": {
+      return {
+        ...state,
+        isSnackBarSuccess: action.payload,
+      };
+    }
+
+    case "CURRENT_STATUS_CODE": {
+      return {
+        ...state,
+        currentStatusCode: action.payload,
+      };
+    }
     case "CREATE_ACCOUNT_SUCCESS": {
       return {
         ...state,

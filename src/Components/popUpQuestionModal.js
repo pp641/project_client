@@ -34,6 +34,7 @@ export default function FullScreenDialog() {
   };
 
   const handleClose = () => {
+    setCurrentHtml("");
     dispatch(openPopModal(false));
     setOpen(records.ArticleReducers.openPopModal);
   };
@@ -67,7 +68,11 @@ export default function FullScreenDialog() {
             </Button>
           </Toolbar>
         </AppBar>
-        {renderHTML(String(currentHtml))};
+        {currentHtml === "" ? (
+          <h1> Please Wait while content is loading ....... </h1>
+        ) : (
+          <> {renderHTML(String(currentHtml))} </>
+        )}
       </Dialog>
     </div>
   );

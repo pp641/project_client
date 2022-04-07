@@ -1,16 +1,25 @@
 import axios from "axios";
 
+export const setCurrentStatus = (data) => async (dispatch) =>
+  dispatch({
+    type: "CURRENT_STATUS_CODE",
+    payload: data,
+  });
+
 export const createAccount = (data) => async (dispatch) => {
   await axios
-    .post("http://localhost:7074/api/createAccount",data)
+    .post("http://localhost:7074/api/createAccount", data)
     .then((response) => {
-      console.log(response.data);
+      console.log("respsts", response.status);
       dispatch({
         type: "CREATE_ACCOUNT_SUCCESS",
         payload: response.data,
       });
+      dispatch(setCurrentStatus(200));
     })
     .catch((error) => {
+      console.log("respsts", error);
+      dispatch(setCurrentStatus(404));
       dispatch({
         type: "CREATE_ACCOUNT_FAILED",
         payload: error,
