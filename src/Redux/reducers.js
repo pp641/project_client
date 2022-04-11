@@ -1,4 +1,3 @@
-
 const AllReducers = (
   state = {
     getAllRecordCount: 0,
@@ -7,55 +6,66 @@ const AllReducers = (
     getAllUsers: [],
     hasUserMarked: [],
     getAllAuthors: [],
-    getAllAuthorsFailed:  [],
-    currentSelectedAuthor : "",
-    currentSelectedCategory : "",
-    currentSearchQuery : "",
-    getCurrentPostHtml : "",
+    getAllAuthorsFailed: [],
+    currentSelectedAuthor: "",
+    currentSelectedCategory: "",
+    currentSearchQuery: "",
+    getCurrentPostHtml: "",
     getCurrentPostHtmlFailed: "",
-    openPopModal  : false
-
+    openPopModal: false,
+    totalPages: 1,
+    currentPage: 1,
   },
   action
 ) => {
   switch (action.type) {
-
-
-    case  "GET_SELECTED_AUTHOR" :{
+    case "GET_TOTAL_PAGES": {
       return {
         ...state,
-        currentSelectedAuthor : action.payload
-      }
+        totalPages: action.payload,
+      };
     }
-    case  "OPEN_POPUP_MODAL" :{
+    case "SET_CURRENT_PAGE": {
       return {
         ...state,
-        openPopModal : action.payload
-      }
+        currentPage: action.payload,
+      };
     }
-    case  "GET_CURRENT_POST_HTML" :{
+    case "GET_SELECTED_AUTHOR": {
       return {
         ...state,
-        getCurrentPostHtml : action.payload
-      }
+        currentSelectedAuthor: action.payload,
+      };
     }
-    case  "GET_CURRENT_POST_HTML_FAILED" :{
+    case "OPEN_POPUP_MODAL": {
       return {
         ...state,
-        getCurrentPostHtmlFailed : action.payload
-      }
+        openPopModal: action.payload,
+      };
     }
-    case  "GET_SEARCH_QUERY" :{
+    case "GET_CURRENT_POST_HTML": {
       return {
         ...state,
-        currentSearchQuery : action.payload
-      }
+        getCurrentPostHtml: action.payload,
+      };
+    }
+    case "GET_CURRENT_POST_HTML_FAILED": {
+      return {
+        ...state,
+        getCurrentPostHtmlFailed: action.payload,
+      };
+    }
+    case "GET_SEARCH_QUERY": {
+      return {
+        ...state,
+        currentSearchQuery: action.payload,
+      };
     }
     case "GET_SELECTED_CATEGORY": {
       return {
         ...state,
-        currentSelectedCategory : action.payload
-      }
+        currentSelectedCategory: action.payload,
+      };
     }
     case "GET_ALL_AUTHORS": {
       return {

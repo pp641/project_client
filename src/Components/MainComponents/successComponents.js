@@ -6,7 +6,7 @@ const SuccessComponents = () => {
     <div>
       <button
         onClick={() => {
-          navigate("/pagination");
+          navigate("/testingPage");
         }}
       >
         Pagination

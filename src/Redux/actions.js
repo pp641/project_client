@@ -1,4 +1,5 @@
 import axios from "axios";
+import { data } from "cheerio/lib/api/attributes";
 
 export const getAllAuthors = () => async (dispatch) => {
   await axios
@@ -23,11 +24,42 @@ export const getSelectedAuthor = (data) => async (dispatch) =>
     payload: data,
   });
 
+export const setCurrentPage = (data) => async (dispatch) =>
+  dispatch({
+    type: "SET_CURRENT_PAGE",
+    payload: data,
+  });
+
+export const getTotalPages = (data) => async (dispatch) =>
+  dispatch({
+    type: "GET_TOTAL_PAGES",
+    payload: data,
+  });
+
 export const getSelectedCategory = (data) => async (dispatch) =>
   dispatch({
     type: "GET_SELECTED_CATEGORY",
     payload: data,
   });
+
+export const resetCurrentCategory = (data) => async (dispatch) => {
+  dispatch({
+    type: "RESET_CURRENT_CATEGORY",
+    payload: data,
+  });
+};
+export const resetCurrentAuthor = (data) => async (dispatch) => {
+  dispatch({
+    type: "RESET_CURRENT_AUTHOR",
+    payload: data,
+  });
+};
+export const resetCurrentSearchQuery = () => async (dispatch) => {
+  dispatch({
+    type: "RESET_CURRENT_SEARCH_QUERY",
+    payload: data,
+  });
+};
 
 export const getSearchQuery = (data) => async (dispatch) =>
   dispatch({
@@ -42,7 +74,11 @@ export const getAllRecords = async (records) => async (dispatch) => {
       console.log(response.data);
       dispatch({
         type: "GET_ALL_RECORDS",
-        payload: response.data,
+        payload: response.data.records,
+      });
+      dispatch({
+        type: "GET_TOTAL_PAGES",
+        payload: response.data.totalpages,
       });
     })
     .catch((error) => {

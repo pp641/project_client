@@ -7,6 +7,8 @@ import UserLogin from "./Components/Auth/userLogin";
 import CountrySelect from "./Components/MainComponents/authorSearch";
 import BasicPagination from "./Components/pagination";
 import PopUpQuestionModal from "./Components/popUpQuestionModal";
+import TestPage from "./Components/testPage";
+import TestPagination from "./Components/TestPagination";
 function Home() {
   return <h1>Home</h1>;
 }
@@ -45,6 +47,8 @@ function App() {
       <Route path="/pagination" element={<BasicPagination />} />
       <Route path="/tester" element={<CountrySelect />} />
       <Route path="/viewPost" element={<PopUpQuestionModal />} />
+      <Route path="/tester2" element={<TestPage />} />
+      <Route path="/testingPage" element={<TestPagination />} /> 
     </Routes>
   );
 }

@@ -21,6 +21,8 @@ const BasicPagination = () => {
   const prevCountRef = useRef();
   const dispatch = useDispatch();
   const records = useSelector((state) => state);
+  const isLogin = records.AuthReducers.accountLoginDetails.success;
+  const [token, setToken] = React.useState(localStorage.getItem("token"));
   const [currentUser, setCurrentUser] = React.useState("");
   const [currentPostHtml, setCurrentPostHtml] = React.useState("");
   const [currentLink, setCurrentLink] = React.useState();
@@ -61,6 +63,7 @@ const BasicPagination = () => {
       "recordArray",
       JSON.stringify(records.ArticleReducers.getAllAuthors)
     );
+    setCurrentUser(JSON.parse(localStorage.getItem("payload")));
     dispatch(
       await getAllRecords({
         searchQuery: records.ArticleReducers.currentSearchQuery,
@@ -69,7 +72,6 @@ const BasicPagination = () => {
         x: x,
       })
     );
-    setCurrentUser(JSON.parse(localStorage.getItem("payload")));
     setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise);
   }, [x]);
 
@@ -85,7 +87,7 @@ const BasicPagination = () => {
     float: "left",
   };
 
-  return (
+  return isLogin || localStorage.getItem("token") ? (
     <React.Fragment>
       <FullScreenDialog />
       <AuthorSearch />
@@ -150,20 +152,18 @@ const BasicPagination = () => {
         </ul>
       </div>
       <div>
-        <Stack spacing={5}>
-          <Pagination
-            count={400000 / 90 + 1}
-            defaultPage={1}
-            onChange={(e, val) => {
-              setX(val);
-              setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise);
-            }}
-            color="secondary"
-          />
-        </Stack>
+        <Pagination
+          count={500}
+          onChange={(e, val) => {
+            setX(val);
+            setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise);
+          }}
+          color="secondary"
+        />
       </div>
-      <PaginationView />
     </React.Fragment>
+  ) : (
+    <div>Failure</div>
   );
 };
 
