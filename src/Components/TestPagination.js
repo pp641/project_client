@@ -6,8 +6,12 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
+  getAllAuthors,
   getAllRecords,
   getCurrentPostHtml,
+  getSearchQuery,
+  getSelectedAuthor,
+  getSelectedCategory,
   openPopModal,
   resetCurrentAuthor,
   resetCurrentSearchQuery,
@@ -36,21 +40,18 @@ const TestPagination = () => {
     maxWidth: "400px",
     border: "2px solid black",
   };
-
-  function MyComponent(props) {
-    useEffect(() => {
-      // do stuff here...
-    }, []); // <-- empty dependency array
-    return <div></div>;
-  }
+  useEffect(() => {
+    dispatch(getAllAuthors());
+  }, []);
 
   useEffect(() => {
     records.ArticleReducers.getAllArticleBatchWise.length === 0 ? (
-      <div>ok</div>
+      <div> Records are loading ..... PLease wait </div>
     ) : (
       setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
     );
   }, [records]);
+
   useEffect(async () => {
     try {
       dispatch(
@@ -110,8 +111,9 @@ const TestPagination = () => {
           style={{ margin: " 0px 10px 0px 10px" }}
           variant="contained"
           onClick={async () => {
-            dispatch(resetCurrentAuthor(""));
-            dispatch(resetCurrentSearchQuery(""));
+            dispatch(getSearchQuery(""));
+            dispatch(getSelectedCategory(""));
+            dispatch(getSelectedAuthor(""));
             dispatch(setCurrentPage(1));
             dispatch(
               await getAllRecords({

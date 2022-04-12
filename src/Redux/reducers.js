@@ -15,10 +15,29 @@ const AllReducers = (
     openPopModal: false,
     totalPages: 1,
     currentPage: 1,
+    allAuthors: [],
   },
   action
 ) => {
   switch (action.type) {
+    case "REST_CURRENT_CATEGORY": {
+      return {
+        ...state,
+        currentSelectedCategory: action.payload,
+      };
+    }
+    case "RESET_CURRENT_AUTHOR": {
+      return {
+        ...state,
+        currentSelectedAuthor: action.payload,
+      };
+    }
+    case "RESET_CURRENT_SEARCH_QUERY": {
+      return {
+        ...state,
+        currentSearchQuery: action.payload,
+      };
+    }
     case "GET_TOTAL_PAGES": {
       return {
         ...state,
@@ -32,6 +51,12 @@ const AllReducers = (
       };
     }
     case "GET_SELECTED_AUTHOR": {
+      return {
+        ...state,
+        currentSelectedAuthor: action.payload,
+      };
+    }
+    case "SET_SELECTED_AUTHOR": {
       return {
         ...state,
         currentSelectedAuthor: action.payload,

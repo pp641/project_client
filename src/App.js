@@ -44,11 +44,11 @@ function App() {
       <Route path="/invoices" element={<Invoices />} />
       <Route path="/AfterLogin" element={<AfterLogin />} />
       <Route path="/team" element={<Team />} />
-      <Route path="/pagination" element={<BasicPagination />} />
+      <Route path="/pagination" element={<TestPagination />} />
       <Route path="/tester" element={<CountrySelect />} />
       <Route path="/viewPost" element={<PopUpQuestionModal />} />
       <Route path="/tester2" element={<TestPage />} />
-      <Route path="/testingPage" element={<TestPagination />} /> 
+      <Route path="/testingPage" element={<TestPagination />} />
     </Routes>
   );
 }
