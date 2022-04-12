@@ -1,6 +1,8 @@
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
 import { createAccount, LoginAccount } from "../../Redux/AuthRedux/actions";
 
 const UserLogin = () => {
@@ -11,31 +13,49 @@ const UserLogin = () => {
   const stateValues = useSelector((state) => state);
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        margin: "1em",
+        width: "40%",
+      }}
+    >
       <div>UserLogin</div>
-      <input
+      <TextField
         type="text"
+        margin="normal"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
       />
-      <input
+      <TextField
+        margin="normal"
         type="password"
         value={password}
         onChange={(e) => {
           setPassword(e.target.value);
         }}
+        id="outlined-basic"
+        label="Outlined"
+        variant="outlined"
       />
-      <button
+      <Button
+        style={{ marginTop: "0.5em" }}
+        variant="conatined"
+        color="danger"
         onClick={() => {
           dispatch(LoginAccount({ email, password }));
-          // window.location.reload("/AfterLogin");
           navigate("/AfterLogin");
         }}
       >
         Login{" "}
-      </button>
+      </Button>
     </div>
   );
 };

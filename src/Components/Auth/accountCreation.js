@@ -9,8 +9,10 @@ import {
   setSnackBar,
 } from "../../Redux/AuthRedux/actions";
 import CustomizedSnackbars from "../../common/snackBarComponent";
+import { useNavigate } from "react-router-dom";
 
 const AccountCreation = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const records = useSelector((state) => state);
   const [name, setName] = React.useState("");
@@ -21,13 +23,16 @@ const AccountCreation = () => {
     <React.Fragment>
       <div
         style={{
-          width: "23rem",
+          display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
-          margin: "20px",
+          margin: "1em",
+          width: "40%",
         }}
       >
         <TextField
           id="outlined-basic"
+          margin="normal"
           type="text"
           value={name}
           onChange={(e) => {
@@ -40,6 +45,7 @@ const AccountCreation = () => {
         <TextField
           id="outlined-basic"
           type="text"
+          margin="normal"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -51,6 +57,7 @@ const AccountCreation = () => {
         <TextField
           id="outlined-basic"
           type="text"
+          margin="normal"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -60,6 +67,7 @@ const AccountCreation = () => {
           variant="outlined"
         />
         <Button
+          style={{ marginTop: "10px" }}
           onClick={() => {
             dispatch(createAccount({ name, email, password }));
           }}
@@ -68,7 +76,24 @@ const AccountCreation = () => {
           Register
         </Button>
       </div>
-      <CustomizedSnackbars />;
+      <div>
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </Button>
+        <Button
+          variant="contained"
+          color="warning"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Home
+        </Button>
+      </div>
     </React.Fragment>
   );
 };
