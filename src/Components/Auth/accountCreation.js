@@ -10,6 +10,7 @@ import {
 } from "../../Redux/AuthRedux/actions";
 import CustomizedSnackbars from "../../common/snackBarComponent";
 import { useNavigate } from "react-router-dom";
+import { ValidateEmail } from "../../common/isValidEmail";
 
 const AccountCreation = () => {
   const navigate = useNavigate();
@@ -69,7 +70,16 @@ const AccountCreation = () => {
         <Button
           style={{ marginTop: "10px" }}
           onClick={() => {
-            dispatch(createAccount({ name, email, password }));
+            if (
+              name.length < 5 ||
+              password.length < 5 ||
+              ValidateEmail(email) === false
+            ) {
+              dispatch(setCurrentStatus(404));
+            } else {
+              dispatch(createAccount({ name, email, password }));
+              dispatch(setCurrentStatus(200));
+            }
           }}
           variant="contained"
         >
@@ -93,6 +103,7 @@ const AccountCreation = () => {
         >
           Home
         </Button>
+        <CustomizedSnackbars />
       </div>
     </React.Fragment>
   );

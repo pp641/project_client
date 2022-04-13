@@ -3,7 +3,6 @@ import { useRef } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useDispatch, useSelector } from "react-redux";
-import PaginationView from "./paginationView";
 import PopModal from "./popUpQuestionModal";
 import { openPopModal } from "../Redux/actions";
 import {

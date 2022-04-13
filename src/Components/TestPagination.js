@@ -17,7 +17,6 @@ import {
   resetCurrentSearchQuery,
   setCurrentPage,
 } from "../Redux/actions";
-import MediaCard from "./CardPost";
 import FullScreenDialog from "./popUpQuestionModal";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 const TestPagination = () => {
@@ -162,20 +161,20 @@ const TestPagination = () => {
               flexWrap: "wrap",
             }}
           >
-            {currentRecord.map((records) => (
-              <div key={records._id} style={ObjectStyle}>
+            {currentRecord.map((data) => (
+              <div key={data._id} style={ObjectStyle}>
                 <Typography variant="h5" color="brown">
-                  Author id : {records.author_id}
+                  Author id : {data.author_id}
                 </Typography>
-                <Typography>Category : {records.category}</Typography>
-                <Typography>last Updated : {records.last_updated}</Typography>
-                <Typography>Link : {records.link}</Typography>
-                <Typography>Title : {records.title}</Typography>
+                <Typography>Category : {data.category}</Typography>
+                <Typography>last Updated : {data.last_updated}</Typography>
+                <Typography>Link : {data.link}</Typography>
+                <Typography>Title : {data.title}</Typography>
                 <Button
                   variant="contained"
                   onClick={() => {
                     dispatch(openPopModal(true));
-                    setCurrentLink(records.link);
+                    setCurrentLink(data.link);
                   }}
                 >
                   {" "}

@@ -110,12 +110,6 @@ const AllReducers = (
         getAllArticleBatchWise: action.payload,
       };
     }
-    case "GET_RECORD_COUNT": {
-      return {
-        ...state,
-        getAllRecordCount: action.payload,
-      };
-    }
     case "HAS_USER_MARKED": {
       return {
         ...state,

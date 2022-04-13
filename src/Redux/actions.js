@@ -1,5 +1,4 @@
 import axios from "axios";
-import { data } from "cheerio/lib/api/attributes";
 
 export const getAllAuthors = () => async (dispatch) => {
   await axios
@@ -42,25 +41,6 @@ export const getSelectedCategory = (data) => async (dispatch) =>
     payload: data,
   });
 
-export const resetCurrentCategory = (data) => async (dispatch) => {
-  dispatch({
-    type: "RESET_CURRENT_CATEGORY",
-    payload: data,
-  });
-};
-export const resetCurrentAuthor = (data) => async (dispatch) => {
-  dispatch({
-    type: "RESET_CURRENT_AUTHOR",
-    payload: data,
-  });
-};
-export const resetCurrentSearchQuery = () => async (dispatch) => {
-  dispatch({
-    type: "RESET_CURRENT_SEARCH_QUERY",
-    payload: data,
-  });
-};
-
 export const getSearchQuery = (data) => async (dispatch) =>
   dispatch({
     type: "GET_SEARCH_QUERY",
@@ -84,23 +64,6 @@ export const getAllRecords = async (records) => async (dispatch) => {
     .catch((error) => {
       dispatch({
         type: "GET_ALL_RECORDS_FAILED",
-        payload: error,
-      });
-    });
-};
-export const getRecordCount = async () => async (dispatch) => {
-  await axios
-    .get("http://localhost:7074/api/getRecordCount")
-    .then((response) => {
-      console.log(response.data);
-      dispatch({
-        type: "GET_RECORD_COUNT",
-        payload: response.data,
-      });
-    })
-    .catch((error) => {
-      dispatch({
-        type: "GET_RECORD_COUNT_FAILED",
         payload: error,
       });
     });

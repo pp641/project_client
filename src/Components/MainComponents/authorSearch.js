@@ -8,7 +8,6 @@ import {
   getSelectedCategory,
   getSearchQuery,
 } from "../../Redux/actions";
-import { margin } from "@mui/system";
 export default function ComboBox() {
   const dispatch = useDispatch();
   const details = useSelector((state) => state);

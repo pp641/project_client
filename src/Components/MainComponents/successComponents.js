@@ -1,26 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "reactstrap";
 const SuccessComponents = () => {
   const navigate = useNavigate();
   const userDetails = (
     <div>
-      <button
+      <Button
         onClick={() => {
-          navigate("/testingPage");
+          navigate("/pagination");
         }}
       >
         Pagination
-      </button>
-      <button> All Authors</button>
+      </Button>
+      <Button
+        onClick={() => {
+          navigate("/profile");
+        }}
+      >
+        {" "}
+        Profile Page
+      </Button>
     </div>
   );
 
-  return (
-    <ul>
-      <li>{userDetails}</li>
-      <li>Get</li>
-    </ul>
-  );
+  return <>{userDetails}</>;
 };
 
 export default SuccessComponents;
