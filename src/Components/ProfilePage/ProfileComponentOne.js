@@ -24,8 +24,6 @@ const ProfileComponentOne = () => {
           <Typography variant="h5">Email : {profilePageDetails.email}</Typography>
         </div>
         
-        
-        
       </div>
     </div>
   );
