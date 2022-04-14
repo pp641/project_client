@@ -43,13 +43,13 @@ const TestPagination = () => {
     dispatch(getAllAuthors());
   }, []);
 
-  useEffect(() => {
-    records.ArticleReducers.getAllArticleBatchWise.length === 0 ? (
-      <div> Records are loading ..... PLease wait </div>
-    ) : (
-      setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
-    );
-  }, [records]);
+  // useEffect(() => {
+  //   records.ArticleReducers.getAllArticleBatchWise.length === 0 ? (
+  //     <div> Records are loading ..... PLease wait </div>
+  //   ) : (
+  //     setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
+  //   );
+  // }, [records]);
 
   useEffect(async () => {
     try {

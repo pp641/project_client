@@ -10,6 +10,8 @@ import PopUpQuestionModal from "./Components/popUpQuestionModal";
 import TestPagination from "./Components/TestPagination";
 import { Button } from "reactstrap";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
+import './App.css';
+
 function Home() {
   return <h1>Home</h1>;
 }

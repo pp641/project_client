@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+.profile_box{
+  margin-top: 250px;
+  background-image: linear-gradient(to top, rgba(155, 51, 51, 0), rgb(217, 98, 221));
+  text-align: center;
+}
