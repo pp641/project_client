@@ -1,14 +1,12 @@
-import { Pagination, Typography } from "@mui/material";
+import { Button, Pagination, Typography } from "@mui/material";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import AfterLogin from "./Components/AfterLogin";
 import AccountCreation from "./Components/Auth/accountCreation";
 import UserLogin from "./Components/Auth/userLogin";
 import CountrySelect from "./Components/MainComponents/authorSearch";
-import BasicPagination from "./Components/pagination";
-import PopUpQuestionModal from "./Components/popUpQuestionModal";
-import TestPagination from "./Components/TestPagination";
-import { Button } from "reactstrap";
+import PopUpQuestionModal from "./Components/Pagination/popUpQuestionModal";
+import TestPagination from "./Components/Pagination/TestPagination";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
 function Home() {
   return <h1>Home</h1>;

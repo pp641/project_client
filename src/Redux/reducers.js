@@ -16,6 +16,7 @@ const AllReducers = (
     totalPages: 1,
     currentPage: 1,
     allAuthors: [],
+    currentOpenedLink: "",
   },
   action
 ) => {
@@ -24,6 +25,12 @@ const AllReducers = (
       return {
         ...state,
         currentSelectedCategory: action.payload,
+      };
+    }
+    case "CURRENT_OPENED_LINK": {
+      return {
+        ...state,
+        currentOpenedLink: action.payload,
       };
     }
     case "RESET_CURRENT_AUTHOR": {

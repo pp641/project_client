@@ -33,10 +33,12 @@ export default function CustomizedSnackbars() {
     switch (params) {
       case 200:
         return <Alert severity="success">Login Success</Alert>;
-
       case 404:
         return <Alert severity="error">Login Failed</Alert>;
-
+      case 500:
+        return <Alert severity="error">Post Marked As Favourite</Alert>;
+      case 501:
+        return <Alert severity="error">Post Removed From Favourite</Alert>;
       case 0:
         return <div></div>;
       default:
@@ -48,7 +50,7 @@ export default function CustomizedSnackbars() {
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
         open={records.AuthReducers.currentStatusCode}
-        autoHideDuration={1000}
+        autoHideDuration={5000}
         onClose={handleClose}
       >
         {returnSwitch(records.AuthReducers.currentStatusCode)}

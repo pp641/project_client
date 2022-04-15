@@ -2,7 +2,7 @@ const AllReducers = (
   state = {
     accountCreationDetails: {},
     accountLoginDetails: {},
-    hasUserMarked: {},
+    hasUserMarked: [],
     currentUser: {},
     isSnackBarSuccess: 0,
     currentStatusCode: 0,

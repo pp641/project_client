@@ -1,12 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
-const ProfileComponentOne = () => {
-  const [profilePageDetails, setProfilePageDetails] = React.useState(
-    JSON.parse(localStorage.getItem("payload"))
-  );
-  useEffect(() => {
-    console.log(profilePageDetails);
-  }, []);
+const ProfileComponentOne = (props) => {
+  const profilePageDetails = props.profile;
   return (
     <div>
       <Typography variant="h3"> Welcome to the profile </Typography>
