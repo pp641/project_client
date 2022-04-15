@@ -17,6 +17,8 @@ const AllReducers = (
     currentPage: 1,
     allAuthors: [],
     currentOpenedLink: "",
+    allSavedRecordsUserWise: [],
+    allSavedRecordsUserWiseFailed: "",
   },
   action
 ) => {
@@ -25,6 +27,18 @@ const AllReducers = (
       return {
         ...state,
         currentSelectedCategory: action.payload,
+      };
+    }
+    case "USER_SAVED_RECORDS": {
+      return {
+        ...state,
+        allSavedRecordsUserWise: action.payload,
+      };
+    }
+    case "USER_SAVED_RECORDS_FAILED": {
+      return {
+        ...state,
+        allSavedRecordsUserWiseFailed: action.paylaod,
       };
     }
     case "CURRENT_OPENED_LINK": {
