@@ -10,7 +10,7 @@ const SuccessComponents = () => {
           <div className="col-3"></div>
             <div className="col-3">
               <Button
-              className="btn btn-primary"
+              className="btn btn-primary btn_p"
               onClick={() => {
                 navigate("/pagination");
               }}
@@ -20,6 +20,7 @@ const SuccessComponents = () => {
             </div>
             <div className="col-3">
               <Button
+              className="btn btn-primary btn_p"
               onClick={() => {
                 navigate("/profile");
               }}
