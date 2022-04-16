@@ -11,6 +11,7 @@ import {
 import ProfileComponentOne from "./ProfileComponentOne";
 import UserSavedRecords from "./mapFavouriteItemsArray";
 import FullScreenDialog from "../Pagination/popUpQuestionModal";
+import { removeCurrentFavPost } from "../../Redux/AuthRedux/actions";
 const ObjectStyle = {
   backgroundColor: "#f1f1f1",
   margin: "10px",
@@ -32,7 +33,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     dispatch(getAllSavedRecordsUserWise(currentUserEmail));
-  }, []);
+  }, [records.AuthReducers.removeCurrentFavPost]);
 
   React.useEffect(() => {
     dispatch(getCurrentPostHtml(records.ArticleReducers.currentOpenedLink));
@@ -73,6 +74,16 @@ const ProfilePage = () => {
               }}
             >
               Read Here
+            </Button>
+            <br />
+            <Button
+              onClick={() => {
+                dispatch(removeCurrentFavPost(currentUserEmail, data._id));
+              }}
+              variant="contained"
+              color="info"
+            >
+              Remove from Liked Posts
             </Button>
           </div>
         ))}

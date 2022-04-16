@@ -76,6 +76,26 @@ export const sendLikeStatus = (x1, x2, x3) => async (dispatch) => {
     });
 };
 
+export const removeCurrentFavPost = (email, id) => (dispatch) => {
+  axios
+    .patch("http://localhost:7074/api/removeCurrentFavPost/", {
+      email: email,
+      id: id,
+    })
+    .then((response) => {
+      dispatch({
+        type: "REMOVE_CURRENT_FAV_POST",
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "REMOVE_CURRENT_FAV_POST_FAILED",
+        payload: error,
+      });
+    });
+};
+
 export const currentUserDetails = (data) => async (dispatch) => {
   await axios
     .post("http://localhost:7074/api/getcurrentUser", { data: data })
