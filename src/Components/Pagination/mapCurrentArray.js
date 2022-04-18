@@ -46,7 +46,6 @@ const MapCurrentArray = (props) => {
   return (
     <>
       <FullScreenDialog />
-      {console.log("thiss", records.AuthReducers.currentUser)}
       {currentRecord?.length === 0 ? (
         <div>PLease wait while records are loading</div>
       ) : (

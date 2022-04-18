@@ -32,7 +32,7 @@ const TestPagination = () => {
     JSON.parse(localStorage.getItem("payload"))
   );
   const [hasDone, setHasDone] = useState(
-    JSON.parse(localStorage.getItem("payload")).hasDone
+    JSON.parse(localStorage.getItem("payload"))?.hasDone
   );
   const [currentLink, setCurrentLink] = useState("");
   const [currentRecord, setCurrentRecord] = useState([]);
@@ -52,6 +52,13 @@ const TestPagination = () => {
   }, []);
 
 
+  useEffect(() => {
+    records.ArticleReducers.getAllArticleBatchWise?.length === 0 ? (
+      <div> Records are loading ..... PLease wait </div>
+    ) : (
+      setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
+    );
+  }, [records]);
 
   useEffect(async () => {
     try {
@@ -153,7 +160,6 @@ const TestPagination = () => {
         </Button>
       </div>
       <div>
-        {console.log("ok", currentRecord)}
         <MapCurrentArray record={currentRecord} />
       </div>
     </React.Fragment>
