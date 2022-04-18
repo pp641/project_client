@@ -2,10 +2,12 @@ const AllReducers = (
   state = {
     accountCreationDetails: {},
     accountLoginDetails: {},
-    hasUserMarked: {},
+    hasUserMarked: [],
     currentUser: {},
     isSnackBarSuccess: 0,
     currentStatusCode: 0,
+    removeCurrentFavPost: "",
+    removeCurrentFavPostFailed: "",
   },
   action
 ) => {
@@ -14,6 +16,18 @@ const AllReducers = (
       return {
         ...state,
         isSnackBarSuccess: action.payload,
+      };
+    }
+    case "REMOVE_CURRENT_FAV_POST": {
+      return {
+        ...state,
+        removeCurrentFavPost: action.payload,
+      };
+    }
+    case "REMOVE_CURRENT_FAV_POST_FAILED": {
+      return {
+        ...state,
+        removeCurrentFavPostFailed: action.payload,
       };
     }
 

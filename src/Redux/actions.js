@@ -17,9 +17,35 @@ export const getAllAuthors = () => async (dispatch) => {
     });
 };
 
+export const getAllSavedRecordsUserWise = (data) => async (dispatch) => {
+  await axios
+    .post("http://localhost:7074/api/getAllSavedRecordUserWise", {
+      email: data,
+    })
+    .then(async (response) => {
+      console.log(response.data);
+      await dispatch({
+        type: "USER_SAVED_RECORDS",
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: "USER_SAVED_RECORDS_FAILED",
+        payload: error,
+      });
+    });
+};
+
 export const getSelectedAuthor = (data) => async (dispatch) =>
   dispatch({
     type: "GET_SELECTED_AUTHOR",
+    payload: data,
+  });
+
+export const getCurrentLink = (data) => async (dispatch) =>
+  dispatch({
+    type: "CURRENT_OPENED_LINK",
     payload: data,
   });
 
@@ -51,7 +77,6 @@ export const getAllRecords = async (records) => async (dispatch) => {
   await axios
     .post("http://localhost:7074/api/getRecordsByFilterOperations", records)
     .then((response) => {
-      console.log(response.data);
       dispatch({
         type: "GET_ALL_RECORDS",
         payload: response.data.records,

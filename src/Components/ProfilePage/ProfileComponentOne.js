@@ -1,12 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
-const ProfileComponentOne = () => {
-  const [profilePageDetails, setProfilePageDetails] = React.useState(
-    JSON.parse(localStorage.getItem("payload"))
-  );
-  useEffect(() => {
-    console.log(profilePageDetails);
-  }, []);
+const ProfileComponentOne = (props) => {
+  const profilePageDetails = props.profile;
   return (
     <div className='container'>
       <div className="profile_box p-5 shadow rounded border">
