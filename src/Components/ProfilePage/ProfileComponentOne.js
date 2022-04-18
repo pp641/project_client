@@ -3,12 +3,23 @@ import React, { useEffect } from "react";
 const ProfileComponentOne = (props) => {
   const profilePageDetails = props.profile;
   return (
-    <div>
-      <Typography variant="h3"> Welcome to the profile </Typography>
-      <Typography variant="h5">
-        User Name : {profilePageDetails.name}
-      </Typography>
-      <Typography variant="h5">Email : {profilePageDetails.email}</Typography>
+    <div className='container'>
+      <div className="profile_box p-5 shadow rounded border">
+        <div className="row p-3">
+          <Typography variant="h3" className="h3"> Welcome to the Profile </Typography>
+        </div>
+
+        <div className="row p-3">
+          <Typography variant="h5">
+              User Name : {profilePageDetails.name}
+          </Typography>
+        </div>
+
+        <div className="row p-1">
+          <Typography variant="h5">Email : {profilePageDetails.email}</Typography>
+        </div>
+        
+      </div>
     </div>
   );
 };

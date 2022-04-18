@@ -50,7 +50,23 @@ const TestPagination = () => {
     dispatch(getAllAuthors());
   }, []);
 
-
+<<<<<<< HEAD:src/Components/TestPagination.js
+  // useEffect(() => {
+  //   records.ArticleReducers.getAllArticleBatchWise.length === 0 ? (
+  //     <div> Records are loading ..... PLease wait </div>
+  //   ) : (
+  //     setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
+  //   );
+  // }, [records]);
+=======
+  useEffect(() => {
+    records.ArticleReducers.getAllArticleBatchWise?.length === 0 ? (
+      <div> Records are loading ..... PLease wait </div>
+    ) : (
+      setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
+    );
+  }, [records]);
+>>>>>>> main:src/Components/Pagination/TestPagination.js
 
   useEffect(async () => {
     try {

@@ -1,14 +1,13 @@
 import { Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AuthorSearch from "../MainComponents/authorSearch";
+import AuthorSearch from "../Components/MainComponents/authorSearch";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
   getAllAuthors,
   getAllRecords,
-  getCurrentLink,
   getCurrentPostHtml,
   getSearchQuery,
   getSelectedAuthor,
@@ -17,22 +16,16 @@ import {
   resetCurrentAuthor,
   resetCurrentSearchQuery,
   setCurrentPage,
-} from "../../Redux/actions";
+} from "../Redux/actions";
 import FullScreenDialog from "./popUpQuestionModal";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
-import MapCurrentArray from "./mapCurrentArray";
 const TestPagination = () => {
   const dispatch = useDispatch();
+  const [isMounted, setIsMounted] = useState(false);
 
   const records = useSelector((state) => state);
   const isLogin = records.AuthReducers.accountLoginDetails.success;
 
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("payload"))
-  );
-  const [hasDone, setHasDone] = useState(
-    JSON.parse(localStorage.getItem("payload")).hasDone
-  );
   const [currentLink, setCurrentLink] = useState("");
   const [currentRecord, setCurrentRecord] = useState([]);
   const [category, setCategory] = useState("");
@@ -50,7 +43,13 @@ const TestPagination = () => {
     dispatch(getAllAuthors());
   }, []);
 
-
+  // useEffect(() => {
+  //   records.ArticleReducers.getAllArticleBatchWise.length === 0 ? (
+  //     <div> Records are loading ..... PLease wait </div>
+  //   ) : (
+  //     setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise)
+  //   );
+  // }, [records]);
 
   useEffect(async () => {
     try {
@@ -67,12 +66,19 @@ const TestPagination = () => {
     }
   }, [records.ArticleReducers.currentPage]);
 
+  React.useEffect(() => {
+    dispatch(getCurrentPostHtml(currentLink));
+  }, [currentLink]);
+
   return isLogin || localStorage.getItem("token") ? (
     <React.Fragment>
+      {console.log("okrec", currentRecord)}
+      <FullScreenDialog />
       <AuthorSearch />
       <div
         style={{
           display: "flex",
+
           justifyContent: "center",
         }}
       >
@@ -85,19 +91,19 @@ const TestPagination = () => {
             dispatch(setCurrentPage(records.ArticleReducers.currentPage - 1));
           }}
         >
-          Previous page
+          decrement
           <ArrowBackIos />
         </Button>
         <Button
           style={{ margin: " 0px 10px 0px 10px" }}
           variant="contained"
           color="success"
-          disabled={currentRecord?.length < 90 && currentRecord?.length !== 0}
+          disabled={currentRecord.length < 90 && currentRecord.length !== 0}
           onClick={() => {
             dispatch(setCurrentPage(records.ArticleReducers.currentPage + 1));
           }}
         >
-          Next page
+          Increment
           <ArrowForwardIosIcon />
         </Button>
         <Button
@@ -138,12 +144,46 @@ const TestPagination = () => {
             setCurrentRecord(records.ArticleReducers.getAllArticleBatchWise);
           }}
         >
-          Search
+          Perform search filter
         </Button>
       </div>
+      {records.ArticleReducers.currentPage}
       <div>
         {console.log("ok", currentRecord)}
-        <MapCurrentArray record={currentRecord} />
+        {currentRecord.length === 0 ? (
+          <div>PLease wait while records are loading</div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              backgroundcolor: "DodgerBlue",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {currentRecord.map((data) => (
+              <div key={data._id} style={ObjectStyle}>
+                <Typography variant="h5" color="brown">
+                  Author id : {data.author_id}
+                </Typography>
+                <Typography>Category : {data.category}</Typography>
+                <Typography>last Updated : {data.last_updated}</Typography>
+                <Typography>Link : {data.link}</Typography>
+                <Typography>Title : {data.title}</Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    dispatch(openPopModal(true));
+                    setCurrentLink(data.link);
+                  }}
+                >
+                  {" "}
+                  click to read full Post
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </React.Fragment>
   ) : (
