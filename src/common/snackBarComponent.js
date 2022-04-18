@@ -36,9 +36,13 @@ export default function CustomizedSnackbars() {
       case 404:
         return <Alert severity="error">Login Failed</Alert>;
       case 500:
-        return <Alert severity="error">Post Marked As Favourite</Alert>;
+        return <Alert severity="info">Post Marked As Favourite</Alert>;
       case 501:
-        return <Alert severity="error">Post Removed From Favourite</Alert>;
+        return <Alert severity="warning">Post Removed From Favourites</Alert>;
+      case 504:
+        return (
+          <Alert severity="success">Current Post Content Is loaded .....</Alert>
+        );
       case 0:
         return <div></div>;
       default:

@@ -11,7 +11,11 @@ import {
 import ProfileComponentOne from "./ProfileComponentOne";
 import UserSavedRecords from "./mapFavouriteItemsArray";
 import FullScreenDialog from "../Pagination/popUpQuestionModal";
-import { removeCurrentFavPost } from "../../Redux/AuthRedux/actions";
+import {
+  removeCurrentFavPost,
+  setCurrentStatus,
+} from "../../Redux/AuthRedux/actions";
+import CustomizedSnackbars from "../../common/snackBarComponent";
 const ObjectStyle = {
   backgroundColor: "#f1f1f1",
   margin: "10px",
@@ -41,7 +45,8 @@ const ProfilePage = () => {
 
   return (
     <React.Fragment>
-      <ProfileComponentOne profile={profilePageDetails} />
+      {console.log("profile", profilePageDetails)}
+      <ProfileComponentOne />
       <br /> <br />
       <FullScreenDialog />
       <Typography variant="h2">All Favorite Posts</Typography>
@@ -69,16 +74,17 @@ const ProfilePage = () => {
               variant="contained"
               color="error"
               onClick={() => {
+                dispatch(setCurrentStatus(504));
                 dispatch(openPopModal(true));
                 dispatch(getCurrentLink(data.link));
               }}
             >
               Read Here
             </Button>
-            <br />
             <Button
               onClick={() => {
                 dispatch(removeCurrentFavPost(currentUserEmail, data._id));
+                dispatch(setCurrentStatus(501));
               }}
               variant="contained"
               color="info"
@@ -88,7 +94,7 @@ const ProfilePage = () => {
           </div>
         ))}
       </div>
-    </React.Fragment>
+     </React.Fragment>
   );
 };
 

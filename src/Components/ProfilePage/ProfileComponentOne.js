@@ -1,7 +1,11 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const ProfileComponentOne = (props) => {
-  const profilePageDetails = props.profile;
+  const navigate = useNavigate();
+  const [profilePageDetails, setProfilePageDetails] = React.useState(
+    JSON.parse(localStorage.getItem("payload"))
+  );
   return (
     <div className='container'>
       <div className="profile_box p-5 shadow rounded border">

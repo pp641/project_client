@@ -1,6 +1,6 @@
 import { Button, Pagination, Typography } from "@mui/material";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
 import AfterLogin from "./Components/AfterLogin";
 import Dashboard from "./Components/dashboard";
 import AccountCreation from "./Components/Auth/accountCreation";
@@ -15,6 +15,7 @@ function Home() {
   return <h1>Home</h1>;
 }
 
+<<<<<<< Updated upstream
 // function Dashboard() {
 //   return (
 
@@ -45,6 +46,60 @@ function Home() {
 //     </div>
 //   );
 // }
+=======
+function Dashboard() {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <Typography
+        variant="h3"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        Dashboard
+      </Typography>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "10px 10px 10px 10px",
+        }}
+      >
+        <Button
+          variant="contained"
+          style={{ margin: "0px 10px 0px 10px" }}
+          onClick={() => {
+            navigate("/login");
+          }}
+          color="primary"
+        >
+          Login
+        </Button>
+        <Button
+          onClick={() => {
+            navigate("/register");
+          }}
+          style={{ margin: "0px 10px 0px 10px" }}
+          variant="contained"
+          color="success"
+        >
+          Register
+        </Button>
+        <Button
+          disabled={localStorage.getItem("payload") === ""}
+          onClick={() => {
+            navigate("/pagination");
+          }}
+          style={{ margin: "0px 10px 0px 10px" }}
+          variant="contained"
+          color="error"
+        >
+          Pagination
+        </Button>
+      </div>
+    </div>
+  );
+}
+>>>>>>> Stashed changes
 
 function Invoices() {
   return <h1>Invoices</h1>;

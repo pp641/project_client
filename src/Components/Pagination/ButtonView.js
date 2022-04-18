@@ -13,8 +13,10 @@ import {
   setCurrentPage,
 } from "../../Redux/actions";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
+import { useNavigate } from "react-router-dom";
 const ButtonView = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const records = useSelector((state) => state);
   const isLogin = records.AuthReducers.accountLoginDetails.success;
   const [currentIcon, setCurrentIcon] = useState(<FavoriteIcon />);

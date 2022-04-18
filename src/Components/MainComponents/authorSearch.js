@@ -26,6 +26,7 @@ export default function ComboBox() {
 
   return (
     <React.Fragment>
+      <br />
       <div
         style={{
           display: "flex",
@@ -40,7 +41,7 @@ export default function ComboBox() {
           onChange={(e) => {
             dispatch(getSearchQuery(e.target.value));
           }}
-          label="Outlined"
+          label="Search"
           variant="outlined"
         />
         <Autocomplete

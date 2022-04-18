@@ -14,10 +14,22 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { openPopModal } from "../../Redux/actions";
+import CustomizedSnackbars from "../../common/snackBarComponent";
+import { setCurrentStatus } from "../../Redux/AuthRedux/actions";
+import SliderComponent from "./sliderComponent";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
+
+const postStyle = {
+  justifyContent: "center",
+};
+
+const postStyle2 = {
+  display: "flex",
+  justifyContent: "center",
+};
 
 export default function FullScreenDialog() {
   const dispatch = useDispatch();
@@ -57,20 +69,28 @@ export default function FullScreenDialog() {
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
-            </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
-              save
+              Close
             </Button>
+            <div style={{ float: "right" }}>
+              <SliderComponent />
+            </div>
           </Toolbar>
         </AppBar>
+
         {currentHtml === "" ? (
-          <h1> Please Wait while content is loading ....... </h1>
+          <Typography variant="h3" style={postStyle2}>
+            {" "}
+            Please Wait while content is loading .......{" "}
+          </Typography>
         ) : (
-          <> {renderHTML(String(currentHtml))} </>
+          <Typography variant="h5" style={postStyle}>
+            {" "}
+            {renderHTML(String(currentHtml))}{" "}
+          </Typography>
         )}
       </Dialog>
+      <CustomizedSnackbars />
     </div>
   );
 }

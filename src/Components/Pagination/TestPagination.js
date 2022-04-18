@@ -21,9 +21,10 @@ import {
 import FullScreenDialog from "./popUpQuestionModal";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 import MapCurrentArray from "./mapCurrentArray";
+import { useNavigate } from "react-router-dom";
 const TestPagination = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const records = useSelector((state) => state);
   const isLogin = records.AuthReducers.accountLoginDetails.success;
 
@@ -139,6 +140,16 @@ const TestPagination = () => {
           }}
         >
           Search
+        </Button>
+        <Button
+          variant="contained"
+          style={{ margin: " 0px 10px 0px 10px" }}
+          color="error"
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          Your Profile
         </Button>
       </div>
       <div>

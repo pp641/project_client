@@ -15,6 +15,7 @@ import {
 } from "../../Redux/actions";
 import FullScreenDialog from "./popUpQuestionModal";
 import { useNavigate } from "react-router-dom";
+import CustomizedSnackbars from "../../common/snackBarComponent";
 
 const MapCurrentArray = (props) => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const MapCurrentArray = (props) => {
                   onClick={() => {
                     dispatch(sendLikeStatus(data._id, currentEmail, "dislike"));
                     dispatch(currentUserDetails(currentEmail));
+                    dispatch(setCurrentStatus(501));
                   }}
                 >
                   <FavoriteIcon />
@@ -80,6 +82,7 @@ const MapCurrentArray = (props) => {
                   onClick={() => {
                     dispatch(sendLikeStatus(data._id, currentEmail, "like"));
                     dispatch(currentUserDetails(currentEmail));
+                    dispatch(setCurrentStatus(500));
                   }}
                 >
                   <FavoriteBorderIcon />
@@ -88,7 +91,12 @@ const MapCurrentArray = (props) => {
               <Typography>Category : {data.category}</Typography>
               <Typography>last Updated : {data.last_updated}</Typography>
               <Typography>Title : {data.title}</Typography>
-              <Button variant="contained" color="success" href={data.link}>
+              <Button
+                target="_blank"
+                variant="contained"
+                color="success"
+                href={data.link}
+              >
                 Original Post Link
               </Button>
               <br />
@@ -106,6 +114,7 @@ const MapCurrentArray = (props) => {
           ))}
         </div>
       )}
+      <CustomizedSnackbars />
     </>
   );
 };
