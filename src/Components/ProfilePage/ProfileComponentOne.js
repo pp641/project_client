@@ -24,6 +24,10 @@ const ProfileComponentOne = (props) => {
         </div>
         
       </div>
+      <Button         variant  = "contained"
+ onClick  = {()=>{
+        navigate("/pagination")
+      }}> go to all Posts</Button>
     </div>
   );
 };

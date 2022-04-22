@@ -10,10 +10,14 @@ import PopUpQuestionModal from "./Components/Pagination/popUpQuestionModal";
 import TestPagination from "./Components/Pagination/TestPagination";
 import ProfilePage from "./Components/ProfilePage/ProfilePage";
 import './App.css';
+import React from "react";
+import ResponsiveAppBar from "./common/navBar";
 
 
 function App() {
   return (
+    <React.Fragment>
+      <ResponsiveAppBar/>
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<UserLogin />} />
@@ -23,6 +27,7 @@ function App() {
       <Route path="/pagination" element={<TestPagination />} />
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>
+    </React.Fragment>
   );
 }
 export default App;

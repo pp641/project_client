@@ -51,7 +51,6 @@ const TestPagination = () => {
     dispatch(getAllAuthors());
   }, []);
 
-
   useEffect(() => {
     records.ArticleReducers.getAllArticleBatchWise?.length === 0 ? (
       <div> Records are loading ..... PLease wait </div>
@@ -82,6 +81,7 @@ const TestPagination = () => {
         style={{
           display: "flex",
           justifyContent: "center",
+          marginBottom: "10em",
         }}
       >
         <Button
@@ -147,16 +147,6 @@ const TestPagination = () => {
           }}
         >
           Search
-        </Button>
-        <Button
-          variant="contained"
-          style={{ margin: " 0px 10px 0px 10px" }}
-          color="error"
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          Your Profile
         </Button>
       </div>
       <div>

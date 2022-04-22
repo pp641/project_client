@@ -28,6 +28,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.4.1",
+    "sass": "^1.50.1",
     "stream": "0.0.2",
     "util": "^0.12.4",
     "web-vitals": "^2.1.4"

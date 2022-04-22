@@ -7,6 +7,7 @@ const AllReducers = (
     isSnackBarSuccess: 0,
     currentStatusCode: 0,
     removeCurrentFavPost: "",
+    accountLoginDetailsFailed: {},
     removeCurrentFavPostFailed: "",
   },
   action
@@ -83,7 +84,7 @@ const AllReducers = (
     case "LOGIN_ACCOUNT_FAILED": {
       return {
         ...state,
-        accountLoginDetails: action.payload,
+        accountLoginDetailsFailed: action.payload,
       };
     }
     default: {

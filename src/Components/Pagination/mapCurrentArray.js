@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import "../../Styles/cardStyles.scss";
 import {
   currentUserDetails,
   sendLikeStatus,
@@ -49,68 +50,68 @@ const MapCurrentArray = (props) => {
       {currentRecord?.length === 0 ? (
         <div>PLease wait while records are loading</div>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            backgroundcolor: "DodgerBlue",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          {currentRecord?.map((data) => (
-            <div key={data._id} style={ObjectStyle}>
-              <Typography variant="h5" color="brown">
-                Author id : {data.author_id}
-              </Typography>
-              {records.AuthReducers.currentUser[0].hasDone.includes(
-                data._id
-              ) === true ? (
-                <span
-                  style={{ cursor: "pointer" }}
+        <div class="container">
+          <div class="card__container">
+            {currentRecord?.map((data) => (
+              <div class="card">
+                <div class="card__content">
+                  {records.AuthReducers.currentUser[0].hasDone.includes(
+                    data._id
+                  ) === true ? (
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        dispatch(
+                          sendLikeStatus(data._id, currentEmail, "dislike")
+                        );
+                        dispatch(currentUserDetails(currentEmail));
+                        dispatch(setCurrentStatus(501));
+                      }}
+                    >
+                      <FavoriteIcon />
+                    </span>
+                  ) : (
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        dispatch(
+                          sendLikeStatus(data._id, currentEmail, "like")
+                        );
+                        dispatch(currentUserDetails(currentEmail));
+                        dispatch(setCurrentStatus(500));
+                      }}
+                    >
+                      <FavoriteBorderIcon />
+                    </span>
+                  )}
+                  <p class="card__info">Author id : {data.author_id}</p>
+                  <p class="card__info">Category : {data.category}</p>
+                  <p class="card__info">Last Updated : {data.last_updated}</p>
+                  <p class="card__info">Title : {data.title}</p>
+                </div>
+                <Button
+                  target="_blank"
+                  variant="contained"
+                  color="success"
+                  href={data.link}
+                  className="card_content"
+                >
+                  Original Post Link
+                </Button>
+                <br />
+                <Button
+                  variant="contained"
+                  color="error"
                   onClick={() => {
-                    dispatch(sendLikeStatus(data._id, currentEmail, "dislike"));
-                    dispatch(currentUserDetails(currentEmail));
-                    dispatch(setCurrentStatus(501));
+                    dispatch(openPopModal(true));
+                    dispatch(getCurrentLink(data.link));
                   }}
                 >
-                  <FavoriteIcon />
-                </span>
-              ) : (
-                <span
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    dispatch(sendLikeStatus(data._id, currentEmail, "like"));
-                    dispatch(currentUserDetails(currentEmail));
-                    dispatch(setCurrentStatus(500));
-                  }}
-                >
-                  <FavoriteBorderIcon />
-                </span>
-              )}
-              <Typography>Category : {data.category}</Typography>
-              <Typography>last Updated : {data.last_updated}</Typography>
-              <Typography>Title : {data.title}</Typography>
-              <Button
-                target="_blank"
-                variant="contained"
-                color="success"
-                href={data.link}
-              >
-                Original Post Link
-              </Button>
-              <br />
-              <Button
-                variant="contained"
-                color="error"
-                onClick={() => {
-                  dispatch(openPopModal(true));
-                  dispatch(getCurrentLink(data.link));
-                }}
-              >
-                Read Here
-              </Button>
-            </div>
-          ))}
+                  Read Here
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       )}
       <CustomizedSnackbars />

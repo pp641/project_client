@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typography, Button } from "@mui/material";
+import "../../Styles/cardStyles.scss";
 
 import {
   getAllSavedRecordsUserWise,
@@ -43,58 +44,56 @@ const ProfilePage = () => {
     dispatch(getCurrentPostHtml(records.ArticleReducers.currentOpenedLink));
   }, [records.ArticleReducers.currentOpenedLink]);
 
-  return (
+  return records.AuthReducers.accountLoginDetails.success ||
+    localStorage.getItem("token") ? (
     <React.Fragment>
       {console.log("profile", profilePageDetails)}
       <ProfileComponentOne />
       <br /> <br />
       <FullScreenDialog />
       <Typography variant="h2">All Favorite Posts</Typography>
-      <div
-        style={{
-          display: "flex",
-          backgroundcolor: "DodgerBlue",
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        {records.ArticleReducers?.allSavedRecordsUserWise?.map((data) => (
-          <div key={data._id} style={ObjectStyle}>
-            <Typography variant="h5" color="brown">
-              Author id : {data.author_id}
-            </Typography>
-            <Typography>Category : {data.category}</Typography>
-            <Typography>last Updated : {data.last_updated}</Typography>
-            <Typography>Title : {data.title}</Typography>
-            <Button variant="contained" color="success" href={data.link}>
-              Original Post Link
-            </Button>
-            <br />
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => {
-                dispatch(setCurrentStatus(504));
-                dispatch(openPopModal(true));
-                dispatch(getCurrentLink(data.link));
-              }}
-            >
-              Read Here
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch(removeCurrentFavPost(currentUserEmail, data._id));
-                dispatch(setCurrentStatus(501));
-              }}
-              variant="contained"
-              color="info"
-            >
-              Remove from Liked Posts
-            </Button>
-          </div>
-        ))}
+      <div class="container">
+        <div class="card__container">
+          {records.ArticleReducers?.allSavedRecordsUserWise?.map((data) => (
+            <div class="card">
+              <div class="card__content">
+                <p class="card__info">Author id : {data.author_id}</p>
+                <p class="card__info">Category : {data.category}</p>
+                <p class="card__info">Last Updated : {data.last_updated}</p>
+                <p class="card__info">Title : {data.title}</p>
+              </div>
+              <Button variant="contained" color="success" href={data.link}>
+                Original Post Link
+              </Button>
+              <br />
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => {
+                  dispatch(setCurrentStatus(504));
+                  dispatch(openPopModal(true));
+                  dispatch(getCurrentLink(data.link));
+                }}
+              >
+                Read Here
+              </Button>
+              <Button
+                onClick={() => {
+                  dispatch(removeCurrentFavPost(currentUserEmail, data._id));
+                  dispatch(setCurrentStatus(501));
+                }}
+                variant="contained"
+                color="info"
+              >
+                Remove from Liked Posts
+              </Button>
+            </div>
+          ))}
+        </div>
       </div>
-     </React.Fragment>
+    </React.Fragment>
+  ) : (
+    <>Not Authorized</>
   );
 };
 

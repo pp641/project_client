@@ -30,7 +30,7 @@ export default function ComboBox() {
       <div
         style={{
           display: "flex",
-          margin: " 0px 10px 0px 10px",
+          margin: " 80px 10px 0px 10px",
           justifyContent: "center",
         }}
       >

@@ -70,7 +70,6 @@ const ButtonView = () => {
     <div
       style={{
         display: "flex",
-
         justifyContent: "center",
       }}
     >

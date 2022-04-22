@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const setCurrentStatus = (data) => async (dispatch) =>
   dispatch({
@@ -28,6 +29,7 @@ export const createAccount = (data) => async (dispatch) => {
 };
 
 export const LoginAccount = (data) => async (dispatch) => {
+  // const navigate = useNavigate();
   await axios
     .post("http://localhost:7074/api/loginAccount", data)
     .then((response) => {
@@ -41,6 +43,7 @@ export const LoginAccount = (data) => async (dispatch) => {
       });
     })
     .catch((error) => {
+      dispatch(setCurrentStatus(404));
       dispatch({
         type: "LOGIN_ACCOUNT_FAILED",
         payload: error,
